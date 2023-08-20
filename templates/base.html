@@ -1,0 +1,43 @@
+{% load static %}
+{% load profile_tag %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <title>Notes</title>
+    </head>
+
+    <body>
+        <!--navigation bar-->
+        <header>
+            <nav>
+                <ul>
+                    {% any-user as found_user %}
+                    {% if found_user %}
+                        <li class="img"><img src="{% static 'images/note.png' %}" /></li>
+                        <li><a href="{% url 'home-page' %}">Notes</a></li>
+                        <li class="right">
+                            <a href="{% url 'add-note' %}">Add Note</a>
+                            <a href="{% url 'profile-details' %}">Profile</a>
+                        </li>
+                    {% else %}
+                        <li class="img"><img src="{% static 'images/note.png' %}" width="32" height="32" /></li>
+
+                        <li><a href="{% url 'home-page' %}">Notes</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        <!--end navigation bar-->
+
+        <div class="body">
+            {% block page_content %}
+            {% endblock %}
+        </div>
+
+        <footer>
+            <div>@Borislav Raynov 2023.</div>
+        </footer>
+    </body>
+</html>
